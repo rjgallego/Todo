@@ -24,12 +24,14 @@ export default function App() {
     setLoading(false);
   }
 
+  
+
   const tryLogin = async () => {
     AsyncStorage.getItem('@todo-graphql:auth0').then((session) => {
       if(session){
         const obj = JSON.parse(session);
         if(obj.exp > Math.floor(new Date().getTime() / 1000)){
-          login(obj.id, obj.name, obj.token)
+          login(obj.id, obj.name, obj.token);
         } else {
           logout();
         }
@@ -48,7 +50,7 @@ export default function App() {
   }
   if(isLoggedIn) {
       return (
-        <Main 
+        <Main
           userId={userId}
           username={username}
           token={jwt}
